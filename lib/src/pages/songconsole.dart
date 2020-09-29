@@ -44,11 +44,13 @@ class _SongConsoleState extends State<SongConsole>{
         var songlist;
         try {
           songlist = snapshot.data['songlist'];
+          songlist ??= [];
         } catch (e) {
           songlist = [];
         }
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.purple[800],
             title: TextField(
               controller: searchTextEdittingController,
               onSubmitted: (value) {
@@ -119,22 +121,22 @@ class _SongConsoleState extends State<SongConsole>{
               ]
             ),
           ),
-          body: SingleChildScrollView(
-            child : snapshot.hasData && songlist.length > 0 ? Column(
-              children: [
-                Text('Now Playing (cos its first in the list)'),
-                Container(
-                  margin: EdgeInsets.all(16),
-                  child: snapshot.hasData ? Center(child: Text(SongNameParser.getSongName(songlist[0]), style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.w700),)) 
-                  : CircularProgressIndicator(),
-                ),
-                Text(snapshot.hasData ? songlist[0] : '', style: TextStyle(fontSize: 11),),
-              ],
-            ) 
-            : Text('add songs to play!')
-            // CallPage(
-            //       channelName: widget.channelName,
-            //     ),
+          body: 
+          // SingleChildScrollView(
+          //   child : snapshot.hasData && songlist.length > 0 ? Column(
+          //     children: [
+          //       Text('Now Playing (cos its first in the list)'),
+          //       Container(
+          //         margin: EdgeInsets.all(16),
+          //         child: snapshot.hasData ? Center(child: Text(SongNameParser.getSongName(songlist[0]), style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.w700),)) 
+          //         : CircularProgressIndicator(),
+          //       ),
+          //       Text(snapshot.hasData ? songlist[0] : '', style: TextStyle(fontSize: 11),),
+          //     ],
+          //   ) 
+          //   : Text('add songs to play!')
+            CallPage(
+                  channelName: widget.channelName,
           ),
         );
       }

@@ -132,7 +132,7 @@ class IndexState extends State<IndexPage> with TickerProviderStateMixin {
           MaterialPageRoute(
             builder: (context) => 
             //Change to callPage to play butterfly video
-            CallPage(
+            SongConsole(
               channelName: _channelController.text,
             ),
           ),

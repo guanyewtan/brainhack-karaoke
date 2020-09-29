@@ -1,7 +1,9 @@
 
 class SongNameParser {
-  static int songNameLengthLimit = 70;
-  static String getSongName(String url) {
+  static String getSongName(String url, {int songNameLengthLimit = 70}) {
+    if (url.contains('https://tzw0.github.io/videos/')) {
+      return url.substring('https://tzw0.github.io/videos/'.length, url.indexOf('.mp4'));
+    }
     try {
       const start = 'title=';
         final startIndex = url.indexOf(start);
